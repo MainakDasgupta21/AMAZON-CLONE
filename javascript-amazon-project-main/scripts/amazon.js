@@ -1,8 +1,13 @@
+import {cart} from '../data/cart.js';
+// import {cart as myCart} from '../data/cart.js';
+
+// const cart = []; //no naming conflict
+import { products } from '../data/products.js';
 
 let productsHTML = '';
 
 products.forEach((product) => {
-        productsHTML += `
+  productsHTML += `
         <div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
@@ -60,31 +65,31 @@ console.log(productsHTML);
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
-        button.addEventListener('click', () => {
-                const productId = button.dataset.productId;
+  button.addEventListener('click', () => {
+    const productId = button.dataset.productId;
 
-                let matchingItem;
-                cart.forEach((item) => {
-                        if (productId === item.productId) {
-                                matchingItem = item;
-                        }
-                });
+    let matchingItem;
+    cart.forEach((item) => {
+      if (productId === item.productId){
+        matchingItem = item;
+      }
+    });
 
-                if (matchingItem) {
-                        matchingItem.quantity++;
-                } else {
-                        cart.push({
-                                productId: productId,
-                                quantity: 1
-                        });
-                }
-                let cartQuantity = 0 ;
+    if (matchingItem) {
+      matchingItem.quantity++;
+    } else {
+      cart.push({
+        productId: productId,
+        quantity: 1
+      });
+    }
+    let cartQuantity = 0;
 
-                cart.forEach((item) => {
-                         cartQuantity += item.quantity;
-                 });
+    cart.forEach((item) => {
+      cartQuantity += item.quantity;
+    });
 
-                document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 
-        });
+  });
 });
