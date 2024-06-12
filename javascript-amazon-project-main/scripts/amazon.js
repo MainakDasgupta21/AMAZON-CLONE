@@ -1,8 +1,9 @@
 import { cart, addToCart } from '../data/cart.js';
 // import {cart as myCart} from '../data/cart.js';
-
 // const cart = []; //no naming conflict
+
 import { products } from '../data/products.js';
+import { formatCurrency } from './utils/money.js';
 
 
 let productsHTML = '';
@@ -28,7 +29,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-price">
-            $${formatCurrency(matchingProduct.priceCents)}
+            $${formatCurrency(product.priceCents)}
           </div> 
 
           <div class="product-quantity-container">
@@ -53,7 +54,7 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-Id = "${product.id}">
+          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id = "${product.id}">
             Add to Cart
           </button>
         </div>`;
@@ -65,7 +66,16 @@ console.log(productsHTML);
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+	button.addEventListener('click', () => {
+		const productId = button.dataset.productId;
 
+		addToCart(productId);
+		updateCartQuantity();
+
+
+	});
+});
 
 
 
@@ -86,13 +96,3 @@ function updateCartQuantity() {
 
 
 
-document.querySelectorAll('.js-add-to-cart').forEach((button) => {
-	button.addEventListener('click', () => {
-		const productId = button.dataset.productId;
-
-		addToCart(productId);
-		updateCartQuantity();
-
-
-	});
-});
