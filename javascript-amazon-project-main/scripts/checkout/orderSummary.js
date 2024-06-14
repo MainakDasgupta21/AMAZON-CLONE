@@ -2,6 +2,7 @@ import { cart, removeFromCart , updateDeliveryOption } from '../../data/cart.js'
 import { getProduct, products } from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
 import { deliveryOptions , getDeliveryOption } from '../../data/deliveryOptions.js';
+import { renderPaymentSummary } from './paymentSummary.js';
 
 
 // import { hello } from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
@@ -118,6 +119,8 @@ export function renderOrderSummary() {
             const container = document.querySelector(`.js-cart-item-container-${productId}`);
 
             container.remove();
+
+            renderPaymentSummary();
           });
         });
 
