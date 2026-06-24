@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true,
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM"],
+    "skipLibCheck": true
+  },
+  "include": [
+    "data/**/*.js",
+    "scripts/**/*.js",
+    "tests/**/*.js",
+    "tests-jasmine/**/*.js",
+    "playwright/**/*.js"
+  ],
+  "exclude": ["node_modules", "tests-jasmine/lib"]
+}
